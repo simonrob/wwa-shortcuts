@@ -1,0 +1,33 @@
+{
+	"manifest_version": 2,
+
+	"name": "Word Web App macOS redo shortcut",
+	"description": "Use the default macOS Cmd+Shift+Z (or your own key combination) as a shortuct for redo when using Word Web App",
+	"version": "1.0",
+	"browser_action": {
+		"default_popup": "popup.html"
+	},
+
+	"permissions": ["https://*.sharepoint.com/*"],
+	
+	"content_scripts": [{
+		"matches": ["https://ukc-word-edit.officeapps.live.com/*"],
+		"js": ["js/contentScript.js"],
+		"all_frames": true
+	}],
+	
+	"background": {
+		"scripts": ["js/background.js"],
+		"persistent": false
+	},
+	
+	"commands": {
+		"redo": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+Z",
+				"mac": "Ctrl+Shift+Z"
+			},
+			"description": "Redo"
+		}
+	}
+}
